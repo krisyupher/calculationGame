@@ -1,0 +1,217 @@
+:root {
+    --bg-color: #0f172a;
+    --card-bg: #1e293b;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --accent-color: #3b82f6;
+    --accent-hover: #2563eb;
+    --success-color: #22c55e;
+    --error-color: #ef4444;
+    --font-family: 'Inter', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.app-container {
+    width: 100%;
+    max-width: 500px;
+    padding: 2rem;
+    text-align: center;
+}
+
+header {
+    margin-bottom: 3rem;
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #60a5fa, #a855f7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.5rem;
+}
+
+.subtitle {
+    color: var(--text-secondary);
+    font-size: 1rem;
+}
+
+/* Screens */
+.screen {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.screen.active {
+    display: flex;
+}
+
+/* Buttons */
+.btn {
+    padding: 1rem 2.5rem;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    font-family: var(--font-family);
+}
+
+.btn:active {
+    transform: scale(0.95);
+}
+
+.btn.primary {
+    background-color: var(--accent-color);
+    color: white;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+}
+
+.btn.primary:hover {
+    background-color: var(--accent-hover);
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.6);
+}
+
+.btn.secondary {
+    background-color: transparent;
+    border: 2px solid var(--text-secondary);
+    color: var(--text-secondary);
+}
+
+.btn.secondary:hover {
+    border-color: var(--text-primary);
+    color: var(--text-primary);
+}
+
+/* Instructions */
+.instructions {
+    background-color: var(--card-bg);
+    padding: 2rem;
+    border-radius: 1rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    font-size: 1.1rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Countdown */
+.countdown-number {
+    font-size: 8rem;
+    font-weight: 800;
+    color: var(--accent-color);
+    animation: pulse 1s infinite;
+}
+
+/* Number Display */
+.number-display {
+    font-size: 8rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    min-height: 160px; /* Prevent layout shift */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Input */
+input[type="number"] {
+    background-color: var(--card-bg);
+    border: 2px solid var(--card-bg);
+    color: var(--text-primary);
+    font-size: 3rem;
+    padding: 1rem;
+    border-radius: 1rem;
+    width: 200px;
+    text-align: center;
+    outline: none;
+    transition: border-color 0.3s;
+    font-family: var(--font-family);
+}
+
+input[type="number"]:focus {
+    border-color: var(--accent-color);
+}
+
+/* Chrome, Safari, Edge, Opera - hide arrows */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+/* Result */
+.result-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+.stats {
+    display: flex;
+    gap: 2rem;
+    margin: 1rem 0;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.stat-item .label {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.stat-item .value {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.1); opacity: 0.8; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes popIn {
+    0% { transform: scale(0.5); opacity: 0; }
+    70% { transform: scale(1.2); }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.pop-in {
+    animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
