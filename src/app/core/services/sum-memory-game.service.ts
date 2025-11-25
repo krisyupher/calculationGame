@@ -9,15 +9,15 @@ import {
   DEFAULT_GAME_CONFIG,
   INITIAL_GAME_STATE,
   calculateGameResult,
-} from '@app/features/game/models';
+} from '@app/features/sum-memory/models';
 import { ConfigService } from './config.service';
 
 /**
- * Core Game Service
- * Manages game state, flow, and logic
+ * Sum Memory Game Service
+ * Manages sum memory game state, flow, and logic
  */
 @Injectable({ providedIn: 'root' })
-export class GameService {
+export class SumMemoryGameService {
   private configService = inject(ConfigService);
 
   // State management

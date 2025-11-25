@@ -1,14 +1,14 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { GameConfig } from '@app/features/game/models';
+import { PositionGameConfig } from '../models';
 
 /**
- * Settings Screen Component
- * Allows users to configure game parameters
+ * Position Settings Screen Component
+ * Allows users to configure position game parameters
  */
 @Component({
-  selector: 'app-settings-screen',
+  selector: 'app-position-settings-screen',
   standalone: true,
   imports: [CommonModule, FormsModule],
   template: `
@@ -17,20 +17,6 @@ import { GameConfig } from '@app/features/game/models';
         <h2 class="title">Game Settings</h2>
 
         <form (ngSubmit)="saveSettings()" class="settings-form">
-          <div class="form-group">
-            <label for="numberCount">Number of Numbers: {{ localConfig.numberCount }}</label>
-            <input
-              id="numberCount"
-              type="range"
-              min="1"
-              max="10"
-              [(ngModel)]="localConfig.numberCount"
-              name="numberCount"
-              class="slider"
-            />
-            <small>How many numbers should appear?</small>
-          </div>
-
           <div class="form-group">
             <label for="minNumber">Minimum Number: {{ localConfig.minNumber }}</label>
             <input
@@ -60,33 +46,34 @@ import { GameConfig } from '@app/features/game/models';
           </div>
 
           <div class="form-group">
-            <label for="displayDuration">Display Duration: {{ localConfig.displayDuration }}ms</label>
+            <label for="roundCount">Number of Rounds: {{ localConfig.roundCount }}</label>
             <input
-              id="displayDuration"
+              id="roundCount"
               type="range"
-              min="500"
-              max="5000"
-              step="100"
-              [(ngModel)]="localConfig.displayDuration"
-              name="displayDuration"
+              min="1"
+              max="20"
+              [(ngModel)]="localConfig.roundCount"
+              name="roundCount"
               class="slider"
             />
-            <small>How long each number is shown (milliseconds)</small>
+            <small>How many rounds to play</small>
           </div>
 
           <div class="form-group">
-            <label for="pauseDuration">Pause Duration: {{ localConfig.pauseDuration }}ms</label>
+            <label for="feedbackDuration"
+              >Feedback Duration: {{ localConfig.feedbackDuration }}ms</label
+            >
             <input
-              id="pauseDuration"
+              id="feedbackDuration"
               type="range"
-              min="100"
-              max="2000"
-              step="50"
-              [(ngModel)]="localConfig.pauseDuration"
-              name="pauseDuration"
+              min="500"
+              max="3000"
+              step="100"
+              [(ngModel)]="localConfig.feedbackDuration"
+              name="feedbackDuration"
               class="slider"
             />
-            <small>Pause between numbers (milliseconds)</small>
+            <small>How long to show feedback after your guess</small>
           </div>
 
           <div class="actions">
@@ -234,15 +221,14 @@ import { GameConfig } from '@app/features/game/models';
     }
   `,
 })
-export class SettingsScreenComponent implements OnInit {
-  @Input() config!: GameConfig;
-  @Output() updateConfig = new EventEmitter<GameConfig>();
+export class PositionSettingsScreenComponent implements OnInit {
+  @Input() config!: PositionGameConfig;
+  @Output() updateConfig = new EventEmitter<PositionGameConfig>();
   @Output() back = new EventEmitter<void>();
 
-  localConfig!: GameConfig;
+  localConfig!: PositionGameConfig;
 
   ngOnInit(): void {
-    // Create a local copy to allow cancellation
     this.localConfig = { ...this.config };
   }
 

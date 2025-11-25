@@ -1,8 +1,9 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { GameService } from '@app/core/services';
-import { ScreenType } from '@app/features/game/models';
+import { SumMemoryGameService } from '@app/core/services';
+import { ScreenType } from '../models';
 import { StartScreenComponent } from '../screens/start-screen.component';
 import { SettingsScreenComponent } from '../screens/settings-screen.component';
 import { CountdownScreenComponent } from '../screens/countdown-screen.component';
@@ -80,9 +81,10 @@ import { ResultScreenComponent } from '../screens/result-screen.component';
     }
   `,
 })
-export class GameContainerComponent implements OnInit {
-  private gameService = inject(GameService);
+export class SumMemoryGameContainerComponent implements OnInit {
+  private gameService = inject(SumMemoryGameService);
   protected screenType = ScreenType;
+  private router = inject(Router);
 
   // Convert observables to signals
   currentScreen = toSignal(this.gameService.currentScreen$, {
@@ -131,5 +133,9 @@ export class GameContainerComponent implements OnInit {
 
   onPlayAgain(): void {
     this.gameService.startGame();
+  }
+
+  onBackToLanding(): void {
+    this.router.navigate(['']);
   }
 }

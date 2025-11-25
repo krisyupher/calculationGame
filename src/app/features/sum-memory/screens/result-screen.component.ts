@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { GameState, calculateGameResult } from '@app/features/game/models';
+import { GameState, calculateGameResult } from '../models';
 
 /**
  * Result Screen Component

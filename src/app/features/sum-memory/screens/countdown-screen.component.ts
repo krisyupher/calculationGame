@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CountdownStep } from '@app/features/game/models';
+import { CountdownStep } from '../models';
 
 /**
  * Countdown Screen Component
