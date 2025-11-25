@@ -13,7 +13,7 @@ import { GameState, calculateGameResult } from '@app/features/game/models';
   template: `
     <div class="result-screen" [ngClass]="resultClass">
       <div class="result-container">
-        <div class="result-icon" [innerHTML]="result.icon"></div>
+        <div class="result-icon">{{ result.icon }}</div>
 
         <h2 class="result-title">{{ result.title }}</h2>
 
